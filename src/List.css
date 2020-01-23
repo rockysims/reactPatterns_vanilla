@@ -2,17 +2,3 @@
 	border: 3px solid black;
 	border-radius: 5px;
 }
-
-.item {
-	text-align: left;
-	padding: 5px;
-	border-bottom: 1px solid black;
-}
-
-.item:last-child {
-	border-width: 0px;
-}
-
-.item.completed {
-	background-color: lightgreen;
-}

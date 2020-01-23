@@ -21,17 +21,35 @@ class App extends Component {
         });
       });
   }
+
+  onSetCompleted(id, isNowCompleted) {
+    this.setState({
+      items: this.state.items.map(item => 
+        (id === item.id)
+          ? {...item, completed: isNowCompleted}
+          : item
+      )
+    });
+  }
+
+  onDeleted(id) {
+    this.setState({
+      items: this.state.items.filter(item => item.id !== id)
+    });
+  }
   
   render() {
     const { items } = this.state;
     return (
       <div className="App">
-        <div className="main">
-          <section>
-            <h3>Items</h3>
-            <List items={items} />
-          </section>
-        </div>
+        <section>
+          <h3>Items</h3>
+          <List
+            items={items}
+            onSetCompleted={this.onSetCompleted.bind(this)}
+            onDeleted={this.onDeleted.bind(this)}
+          />
+        </section>
       </div>
     );
   }

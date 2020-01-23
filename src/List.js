@@ -8,7 +8,12 @@ export default class List extends Component {
 		return (
 			<div className="list">
 				{items.map(item => 
-					<Item key={item.id} item={item} />
+					<Item 
+						key={item.id}
+						item={item}
+						onSetCompleted={this.props.onSetCompleted}
+						onDeleted={this.props.onDeleted}
+					/>
 				)}
 				{!items.length && 'No items.'}
 			</div>
