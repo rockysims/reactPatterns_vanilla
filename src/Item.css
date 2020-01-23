@@ -19,12 +19,17 @@
 .item.completed {
 	background-color: lightgreen;
 }
+
 .item .title {
 	flex: 1 1 auto;
 }
 .item .buttons .delete {
 	font-weight: bold;
 	color: red;
+}
+.item .buttons .create {
+	font-weight: bold;
+	color: green;
 }
 
 .item input[type=checkbox] {

@@ -22,17 +22,34 @@ class App extends Component {
       });
   }
 
-  onSetCompleted(id, isNowCompleted) {
+  onSetComplete(id, isNowComplete) {
     this.setState({
       items: this.state.items.map(item => 
         (id === item.id)
-          ? {...item, completed: isNowCompleted}
+          ? {...item, completed: isNowComplete}
           : item
       )
     });
   }
 
-  onDeleted(id) {
+  onCreate(newItem) {
+    fetch('https://jsonplaceholder.typicode.com/todos', {
+      method: 'POST',
+      body: JSON.stringify(newItem)
+    })
+      .then(response => response.json())
+      .then(({ id }) => {
+        //jsonplaceholder doesn't actually save anything so always returns id === 201
+        this.nextId = this.nextId || id;
+        newItem.id = this.nextId++;
+
+        this.setState({
+          items: [...this.state.items, newItem]
+        });
+      });
+  }
+
+  onDelete(id) {
     this.setState({
       items: this.state.items.filter(item => item.id !== id)
     });
@@ -46,8 +63,9 @@ class App extends Component {
           <h3>Items</h3>
           <List
             items={items}
-            onSetCompleted={this.onSetCompleted.bind(this)}
-            onDeleted={this.onDeleted.bind(this)}
+            onSetComplete={this.onSetComplete.bind(this)}
+            onCreate={this.onCreate.bind(this)}
+            onDelete={this.onDelete.bind(this)}
           />
         </section>
       </div>

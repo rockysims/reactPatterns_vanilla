@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CreateItem from './CreateItem';
 import Item from './Item';
 import './List.css';
 
@@ -11,11 +12,12 @@ export default class List extends Component {
 					<Item 
 						key={item.id}
 						item={item}
-						onSetCompleted={this.props.onSetCompleted}
-						onDeleted={this.props.onDeleted}
+						onSetComplete={this.props.onSetComplete}
+						onDelete={this.props.onDelete}
 					/>
 				)}
 				{!items.length && 'No items.'}
+				<CreateItem onCreate={this.props.onCreate} />
 			</div>
 		)
 	}
