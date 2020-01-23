@@ -7,3 +7,10 @@ test('renders learn react link', () => {
   const linkElement = getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
 });
+
+test('App component contains element div.App', () => {
+  const { container } = render(<App />);
+  const select = container.querySelector.bind(container);
+  const appDiv = select('div.App');
+  expect(appDiv).not.toBe(null);
+});
