@@ -4,12 +4,21 @@ export default class CreateItem extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			newItem: {
-				userId: 1,
-				title: '',
-				completed: false
-			}
+			newItem: this.buildNewItem('')
 		};
+	}
+
+	buildNewItem(title) {
+		return {
+			userId: 1,
+			title: title,
+			completed: false
+		};
+	}
+
+	onClickCreate() {
+		this.props.onCreate(this.state.newItem);
+		this.state.newItem = this.buildNewItem(this.state.newItem.title);
 	}
 
 	onTitleChange(event) {
@@ -26,7 +35,7 @@ export default class CreateItem extends Component {
 					<input type="text" onChange={this.onTitleChange.bind(this)}></input>
 				</span>
 				<span className="buttons">
-					<button className="create" onClick={() => onCreate(this.state.newItem)}>+</button>
+					<button className="create" onClick={this.onClickCreate.bind(this)}>+</button>
 				</span>
 			</div>
 		)
