@@ -1,7 +1,7 @@
 - write a tiny app (todo list?)
 	the tiny app should include:
 		CRUD (and get initial data from JsonPlaceholder)
-		a child component receiving state (and sending a value/event to parent? later)
+		a child component receiving state and sending a value/event to parent
 
 
 TodoListApp
@@ -15,3 +15,4 @@ TodoListApp
 		App
 		List
 		Item
+		CreateItem
